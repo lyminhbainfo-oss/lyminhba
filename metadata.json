@@ -1,0 +1,8 @@
+{
+  "name": "fincher-1st-ad-portfolio",
+  "description": "Portfolio & cinematic archive of filmmaker Lý Minh Bá (1st AD), featuring directed works, theatrical credits, and cinematic stills.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}

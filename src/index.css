@@ -1,0 +1,161 @@
+@import "tailwindcss";
+
+@theme {
+  --font-serif: "Newsreader", Georgia, serif;
+  --font-display: "Newsreader", Georgia, serif;
+  --font-sans: "Plus Jakarta Sans", sans-serif;
+  --font-mono: "JetBrains Mono", monospace;
+  
+  /* Minimalist Auteur Cinema Palette (Clean, Restrained, High-Art) */
+  --color-cinema-bg: #0A0A0A;
+  --color-cinema-surface: #121212;
+  --color-cinema-border: rgba(255, 255, 255, 0.08);
+  --color-cinema-text: #EDEDED;
+  --color-cinema-muted: #888888;
+  --color-cinema-subtle: #444444;
+}
+
+
+/* ==========================================================================
+   AUTHENTIC 35MM CELLULOID FILM GRAIN (Velvety Fine Emulsion & Organic Projection)
+   ========================================================================== */
+
+/* 1. Static Micro-Grain Base Texture (Dense, ultra-fine silver halide crystals) */
+.film-grain-static-base {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.26;
+  mix-blend-mode: screen;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='fineHalide'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.95' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23fineHalide)'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 110px 110px;
+}
+
+/* 2. Living 35mm Celluloid Shimmer Layer (Fine projector gate flutter) */
+.film-grain-animated-layer {
+  position: absolute;
+  top: -40px;
+  left: -40px;
+  width: calc(100% + 80px);
+  height: calc(100% + 80px);
+  pointer-events: none;
+  opacity: 0.19;
+  mix-blend-mode: screen;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='movingCelluloid'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.92' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23movingCelluloid)'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 125px 125px;
+  animation: filmGrainJitter 0.4s steps(6) infinite;
+  will-change: transform;
+}
+
+/* Micro-jitter emulating 35mm film advancing through a camera/projector gate */
+@keyframes filmGrainJitter {
+  0% { transform: translate3d(0, 0, 0); }
+  16% { transform: translate3d(-7px, 5px, 0); }
+  33% { transform: translate3d(6px, -8px, 0); }
+  50% { transform: translate3d(-5px, -5px, 0); }
+  66% { transform: translate3d(8px, 6px, 0); }
+  83% { transform: translate3d(-4px, 7px, 0); }
+  100% { transform: translate3d(0, 0, 0); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .film-grain-animated-layer {
+    animation: none !important;
+  }
+}
+
+/* 3. Global Top-level Film Emulsion Veil */
+.authentic-film-grain-overlay {
+  pointer-events: none;
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  opacity: 0.12;
+  mix-blend-mode: screen;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='filmGrain'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.98' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23filmGrain)'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 105px 105px;
+}
+
+/* Cinema & Photographic aspect ratios */
+.aspect-cinemascope {
+  aspect-ratio: 2.39 / 1;
+}
+
+.aspect-flat {
+  aspect-ratio: 1.85 / 1;
+}
+
+.aspect-photo {
+  aspect-ratio: 4 / 3;
+}
+
+/* Custom scrollbars for dark cinema elegance */
+::-webkit-scrollbar {
+  width: 7px;
+  height: 7px;
+}
+::-webkit-scrollbar-track {
+  background: #0E0D0C;
+}
+::-webkit-scrollbar-thumb {
+  background: #2E2A24;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #4A4237;
+}
+
+/* Apple-grade motion design & responsive utilities */
+:root {
+  --ease-apple: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-snap-type: y proximity;
+  -webkit-tap-highlight-color: transparent;
+  text-rendering: optimizeLegibility;
+  background-color: #0E0D0C;
+  color: #F7F5F0;
+}
+
+/* Magnetic section snapping (Nam châm tự động hút mượt mà khi cuộn tới các phần) */
+section[id] {
+  scroll-margin-top: 80px;
+  scroll-snap-align: start;
+  scroll-snap-stop: normal;
+}
+
+#intro {
+  scroll-margin-top: 0px;
+  scroll-snap-align: start;
+}
+
+footer {
+  scroll-snap-align: end;
+  scroll-snap-stop: normal;
+}
+
+/* Smooth transitions using Apple deceleration */
+.transition-apple {
+  transition-timing-function: var(--ease-apple);
+}
+
+/* Hide scrollbar for clean touch horizontal carousels */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Hardware accelerated layer helper */
+.gpu {
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  will-change: transform, opacity;
+}
